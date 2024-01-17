@@ -3,6 +3,6 @@ from LoadTeam import *
 from SaveTeam import *
 
 
-team2 = LoadTeam()
+team2 = CreateTeam()
 
 
