@@ -17,6 +17,7 @@ def CreateTeam():
         valid = False
         while valid == False:
             name = str(input("Enter the name of Pokemon number " + str(count) + " "))
+            name = name.title()
             rows = cursor.execute(
                 "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
                 (name,),
