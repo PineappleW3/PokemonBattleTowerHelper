@@ -35,7 +35,7 @@ while True:
         try:
             cursor.execute("INSERT INTO PokemonSpecies VALUES (?,?,?,?,?,?,?,?,?,?,'Blank')",(name,type1,type2,hp,attack,defense,spatk,spdef,speed,abilitystring))
         except:
-            sex = 3
+            uselessvar = 3
 
 connection.commit()
 connection.close()
