@@ -89,7 +89,8 @@ def ChangeAbility(teammember):
     abilitychoices = cursor.execute(
         "SELECT Abilities FROM PokemonSpecies WHERE Name = ?",
         (teammember.getname(),),
-    ).fetchall()[0]
+    ).fetchall()[0][0]
+    abilitychoices = abilitychoices.split(",")
     print("\nThese are the abilities you can have:")
     count = 1
     for i in abilitychoices:
@@ -113,7 +114,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT Hp FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         hpmin = ((2*basestat*50)/100)+60
         hpmax = ((((2*basestat)+94)*50)/100)+60
         valid = False
@@ -133,7 +134,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT Attack FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         statmin = (((((2*basestat))*50)/100)+5)*0.9
         statmax = (((((2*basestat)+94)*50)/100)+5)*1.1
         valid = False
@@ -153,7 +154,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT Defense FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         statmin = (((((2*basestat))*50)/100)+5)*0.9
         statmax = (((((2*basestat)+94)*50)/100)+5)*1.1
         valid = False
@@ -173,7 +174,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT SpAtk FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         statmin = (((((2*basestat))*50)/100)+5)*0.9
         statmax = (((((2*basestat)+94)*50)/100)+5)*1.1
         valid = False
@@ -193,7 +194,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT SpDef FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         statmin = (((((2*basestat))*50)/100)+5)*0.9
         statmax = (((((2*basestat)+94)*50)/100)+5)*1.1
         valid = False
@@ -213,7 +214,7 @@ def ChangeStats(teammember):
         basestat = cursor.execute(
             "SELECT Speed FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0]
+        ).fetchall()[0][0]
         statmin = (((((2*basestat))*50)/100)+5)*0.9
         statmax = (((((2*basestat)+94)*50)/100)+5)*1.1
         valid = False
