@@ -70,8 +70,9 @@ def ChangeSpecies(teammember):
     rows1 = cursor.execute(
         "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
         (new,),
-    ).fetchall()[0]
-    if len(rows1) > 1:
+    ).fetchall()
+    if len(rows1) > 0:
+        rows1 = rows1[0]
         teammember = Pokemon(new)
         teammember.settype1(rows1[0])
         teammember.settype2(rows1[1])
