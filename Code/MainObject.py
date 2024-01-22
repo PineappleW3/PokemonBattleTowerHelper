@@ -41,32 +41,32 @@ class Pokemon:
          return self.ability
     
     def sethp(self, stat):
-         self.hp = stat
+         self.hp = int(stat)
     def gethp(self):
          return self.hp
     
     def setattack(self, stat):
-         self.attack = stat
+         self.attack = int(stat)
     def getattack(self):
          return self.attack
     
     def setdefense(self, stat):
-         self.defense = stat
+         self.defense = int(stat)
     def getdefense(self):
          return self.defense
     
     def setspatk(self, stat):
-         self.spatk = stat
+         self.spatk = int(stat)
     def getspatk(self):
          return self.spatk
     
     def setspdef(self, stat):
-         self.spdef = stat
+         self.spdef = int(stat)
     def getspdef(self):
          return self.spdef
     
     def setspeed(self, stat):
-         self.speed = stat
+         self.speed = int(stat)
     def getspeed(self):
          return self.speed
     
