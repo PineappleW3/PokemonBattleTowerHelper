@@ -67,6 +67,7 @@ def ChangeMember(teammember):
     
 def ChangeSpecies(teammember):
     new = input("\nWhat Pokemon would you like to change to? ")
+    new = new.title()
     rows1 = cursor.execute(
         "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
         (new,),
@@ -94,10 +95,18 @@ def ChangeAbility(teammember):
     abilitychoices = abilitychoices.split(",")
     print("\nThese are the abilities you can have:")
     count = 1
+    ability2 = []
+    for i in abilitychoices:
+        if i in ability2:
+            filler = 1
+        else:
+            ability2.append(i)
+    abilitychoices = ability2
     for i in abilitychoices:
         print(str(count) + ") " + i)
         count+=1
     choice = input("Which ability would you like to choose? ")
+    choice = choice.title()
     if choice in abilitychoices:
         teammember.setability(choice)
     else:
