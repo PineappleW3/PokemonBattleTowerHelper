@@ -102,4 +102,5 @@ def SaveTeam(team):
 
     
     f.close()
+    #had to return something for some reason
     return 5

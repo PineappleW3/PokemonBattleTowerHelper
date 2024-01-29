@@ -1,6 +1,7 @@
 from MainObject import *
 import sqlite3
 
+#sorts out file name craziness
 import os
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'Pokemon.db')
@@ -15,9 +16,13 @@ def CreateTeam():
     while count < 3:
         count +=1
         valid = False
+
+        #loops until valid
         while valid == False:
             name = str(input("Enter the name of Pokemon number " + str(count) + " "))
             name = name.title()
+
+            #tries to validate using database query for types
             rows = cursor.execute(
                 "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
                 (name,),
@@ -27,9 +32,9 @@ def CreateTeam():
                 valid = True
             if valid == False:
                 print ("Invalid Pokemon species name (try checking spelling)")
-        poke = Pokemon(name)
 
-        
+        #setting attributes       
+        poke = Pokemon(name) 
         rows = rows[0]
         poke.settype1(rows[0])
         poke.settype2(rows[1])

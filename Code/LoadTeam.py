@@ -10,12 +10,14 @@ cursor = connection.cursor()
 
 def LoadTeam():
     filed = input("What is the name of the text file to open? ")
+    #could probably do this check better
     if filed.find('.') == -1:
         filed = filed + ".txt"
     dirname = os.path.dirname(__file__)
     filed = os.path.join(dirname, filed)
     f = open(filed, "r")
 
+    #there was definitely an easier way to do this
     Pokemon1 = Pokemon(f.readline().strip())
     Pokemon1.setitem(f.readline().strip())
     Pokemon1.setability(f.readline().strip())
@@ -56,6 +58,8 @@ def LoadTeam():
     moves3 = [f.readline().strip(),f.readline().strip(),f.readline().strip(),f.readline().strip()]
     Pokemon3.setmoves(moves3)
 
+
+    #assign types
     rows1 = cursor.execute(
         "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
         (Pokemon1.getname(),),

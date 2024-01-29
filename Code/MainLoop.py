@@ -4,6 +4,7 @@ from SaveTeam import *
 from EditTeam import *
 
 print("Welcome to the Pokemon battle tower helper")
+
 teamloaded = False
 recentlysaved = True
 
@@ -11,10 +12,13 @@ while True:
     try:
         choice = int(input("\nWhat would you like to do?\n1)Create a new team\n2)Load an existing team\n3)Edit the currently loaded team\n4)Save the currently loaded team\n5)Close the program\nPlease input the number:"))
     except:
+        #just a filler line of code since code below already catches invalid values for choice
         choice = "Beans"
 
+    #another big if statement, please learn to code
     if choice == 1:
-        if teamloaded == True:
+        #check if team is not recently saved
+        if recentlysaved == False:
             choice2 = input("Are you sure? This will erase the currently loaded team (Y/N)")
             if choice2.upper() == "Y":
                 team = CreateTeam()
@@ -26,7 +30,7 @@ while True:
             recentlysaved = True
 
     elif choice == 2:
-        if teamloaded == True:
+        if recentlysaved == False:
             choice2 = input("Are you sure? This will erase the currently loaded team (Y/N)")
             if choice2.upper() == "Y":
                 team = LoadTeam()
@@ -53,6 +57,7 @@ while True:
     
     elif choice == 5:
         if recentlysaved == False:
+            #makes sure team isnt lost when forgetting to save
             choice2 = input("Would you like to save first? (Y/N)")
             if choice2.upper() == "Y":
                 SaveTeam(team)
