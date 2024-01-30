@@ -15,7 +15,11 @@ def LoadTeam():
         filed = filed + ".txt"
     dirname = os.path.dirname(__file__)
     filed = os.path.join(dirname, filed)
-    f = open(filed, "r")
+    try:
+        f = open(filed, "r")
+    except:
+        print("Could not find file")
+        return LoadTeam()
 
     #there was definitely an easier way to do this
     Pokemon1 = Pokemon(f.readline().strip())
@@ -85,3 +89,6 @@ def LoadTeam():
     team = [Pokemon1, Pokemon2, Pokemon3]
     f.close()
     return team
+
+
+#=m]z(K2b72rl
