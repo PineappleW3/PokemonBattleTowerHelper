@@ -5,17 +5,17 @@ from EditTeam import *
 
 print("Welcome to the Pokemon battle tower helper")
 
-teamloaded = False
-recentlysaved = True
+teamloaded = False #checks if a team is currently loaded into memory. makes sure it can be edited
+recentlysaved = True #checks if the team has been changed without saving, makes sure user does not exit program without saving
 
 while True:
     try:
         choice = int(input("\nWhat would you like to do?\n1)Create a new team\n2)Load an existing team\n3)Edit the currently loaded team\n4)Save the currently loaded team\n5)Close the program\nPlease input the number:"))
     except:
-        #just a filler line of code since code below already catches invalid values for choice
+        #nothing code since i need to add something to the except
         choice = "Beans"
 
-    #another big if statement, please learn to code
+    #if statement to check every possibility
     if choice == 1:
         #check if team is not recently saved
         if recentlysaved == False:

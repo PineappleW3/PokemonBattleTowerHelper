@@ -10,7 +10,8 @@ cursor = connection.cursor()
 
 def LoadTeam():
     filed = input("What is the name of the text file to open? ")
-    #could probably do this check better
+    #checks if input contains file extension and adds .txt if not
+    #could potentially check for specifically .txt
     if filed.find('.') == -1:
         filed = filed + ".txt"
     dirname = os.path.dirname(__file__)
@@ -21,8 +22,8 @@ def LoadTeam():
         print("Could not find file")
         return LoadTeam()
 
-    #there was definitely an easier way to do this
-    Pokemon1 = Pokemon(f.readline().strip())
+    #manually assigns every variable
+    Pokemon1 = Pokemon(f.readline().strip())#uses .strip to remove newline whitespace characters
     Pokemon1.setitem(f.readline().strip())
     Pokemon1.setability(f.readline().strip())
     Pokemon1.sethp(f.readline().strip())
@@ -34,7 +35,7 @@ def LoadTeam():
     moves1 = [f.readline().strip(),f.readline().strip(),f.readline().strip(),f.readline().strip()]
     Pokemon1.setmoves(moves1)
 
-    f.readline().strip()
+    f.readline().strip() #removes filler character
 
     Pokemon2 = Pokemon(f.readline().strip())
     Pokemon2.setitem(f.readline().strip())
@@ -63,7 +64,7 @@ def LoadTeam():
     Pokemon3.setmoves(moves3)
 
 
-    #assign types
+    #assign types from database
     rows1 = cursor.execute(
         "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
         (Pokemon1.getname(),),

@@ -1,7 +1,7 @@
 from MainObject import *
 import sqlite3
 
-#file name thing
+#sets the directory for the database file
 import os
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'Pokemon.db')
@@ -14,9 +14,10 @@ def ChangeTeam(team):
     print("\nThese are your current team members:")
     count = 1
     for i in team:
-        #shows a numbered list+
+        #shows a numbered list of every team member
         print(str(count) + ") " + i.getname())
         count+=1
+    #select team member
     try:
         changer = int(input("Which one would you like to modify? Please input the number: "))
     except:
@@ -27,11 +28,12 @@ def ChangeTeam(team):
         print("Invalid input")
         team = ChangeTeam(team)
         return team
+    #choose team member from array
     team[changer-1] = ChangeMember(team[changer-1])
     return team
 
 def ChangeMember(teammember):
-    #shows all information
+    #shows all information on current team member
     print ("\nThis is your current Pokemon")
     print ("Species = " + teammember.getname())
     print ("Item = " + teammember.getitem())
@@ -48,7 +50,7 @@ def ChangeMember(teammember):
     print ("Move 4 = " + teammember.getmoves()[3])
     print("\n")
     
-    #big if statement (looks awful)
+    #big if statement to check output
     try:
         change = int(input("What aspect would you like to change? \n1)Species \n2)Held Item \n3)Ability \n4)Stats \n5)Moves \nPlease input the number:"))
     except:
@@ -56,7 +58,7 @@ def ChangeMember(teammember):
         return teammember
     
     if change == 1:
-        #check to avoid erasing data
+        #check to avoid erasing data (in case of incorrect input or similar)
         check = input("Changing the Pokemon species will reset all other information about the Pokemon. Are you sure you want to change it? (Y/N)")
         if check.lower() == "y":
             teammember = ChangeSpecies(teammember)
@@ -80,7 +82,7 @@ def ChangeMember(teammember):
 def ChangeSpecies(teammember):
     new = input("\nWhat Pokemon would you like to change to? ")
     new = new.title()
-    #basically same thing as new team
+    #very similar code to CreateTeam
     rows1 = cursor.execute(
         "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
         (new,),
@@ -104,11 +106,11 @@ def ChangeAbility(teammember):
     abilitychoices = cursor.execute(
         "SELECT Abilities FROM PokemonSpecies WHERE Name = ?",
         (teammember.getname(),),
-    ).fetchall()[0][0] #had to use this awful syntax because it wasnt working
+    ).fetchall()[0][0] #had to use the double index because returned value was within 2 lists
     abilitychoices = abilitychoices.split(",")
     print("\nThese are the abilities you can have:")
     
-    #removes duplicate abilities because it looks awful
+    #removes duplicate abilities from the list (looks better)
     ability2 = []
     for i in abilitychoices:
         if i in ability2:
@@ -118,11 +120,12 @@ def ChangeAbility(teammember):
     abilitychoices = ability2
 
     count = 1
+    #print numbered list of abilities
     for i in abilitychoices:
         print(str(count) + ") " + i)
         count+=1
     choice = input("Which ability would you like to choose? ")
-    #basic validation
+    #validation to check ability is in list
     choice = choice.title()
     if choice in abilitychoices:
         teammember.setability(choice)
@@ -138,17 +141,18 @@ def ChangeStats(teammember):
         return teammember
     
 
-    #another stupid large if statement
+    #big if statement to choose stat
     if choice == 1:
         basestat = cursor.execute(
             "SELECT Hp FROM PokemonSpecies WHERE Name = ?",
             (teammember.getname(),),
-        ).fetchall()[0][0] #why is this necessary
+        ).fetchall()[0][0] #again needed because of output format
 
-        #validate upper and lower bound
+        #calculate upper and lower bounds for stat for validation use
         hpmin = ((2*basestat*50)/100)+60
         hpmax = ((((2*basestat)+94)*50)/100)+60
         valid = False
+        #loop until valid input
         while valid == False:
             valid = True
             try:
@@ -278,7 +282,7 @@ def ChangeMoves(teammember):
     movelist = cursor.execute(
         "SELECT Moveset FROM PokemonSpecies WHERE Name = ?",
         (teammember.getname(),),
-    ).fetchall()[0][0]#literally why
+    ).fetchall()[0][0]
     movelist = movelist.split(",")
     #the database sometimes has whitespace on the last item for some reason
     movelist[len(movelist)-1] = movelist[len(movelist)-1].strip()
@@ -293,6 +297,7 @@ def ChangeMoves(teammember):
         return teammember
     
     newmove = input("What would you like to change the move to? ")
+    #validate selection
     if newmove.title() in movelist:
         currentmoves[choice-1] = newmove.title()
         teammember.setmoves(currentmoves)

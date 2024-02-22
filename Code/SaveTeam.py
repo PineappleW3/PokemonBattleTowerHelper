@@ -4,6 +4,7 @@ import sqlite3
 import os
 
 def SaveTeam(team):
+    #file name check from before
     filed = input("What would you like to name the file? ")
     if filed.find('.') == -1:
         filed = filed + ".txt"
@@ -16,6 +17,7 @@ def SaveTeam(team):
 
     f = open(filed, "w")
 
+    #writes every line manually (including line breaks)
     f.write(team1.getname())
     f.write("\n")
     f.write(team1.getitem())
