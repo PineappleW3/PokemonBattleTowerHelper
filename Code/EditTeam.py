@@ -50,13 +50,14 @@ def ChangeMember(teammember):
     print ("Move 4 = " + teammember.getmoves()[3])
     print("\n")
     
-    #big if statement to check output
+    
     try:
         change = int(input("What aspect would you like to change? \n1)Species \n2)Held Item \n3)Ability \n4)Stats \n5)Moves \nPlease input the number:"))
     except:
         print("Invalid input. Cancelling operation.")
         return teammember
     
+    #big if statement to check output
     if change == 1:
         #check to avoid erasing data (in case of incorrect input or similar)
         check = input("Changing the Pokemon species will reset all other information about the Pokemon. Are you sure you want to change it? (Y/N)")
