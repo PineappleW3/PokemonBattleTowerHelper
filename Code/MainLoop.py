@@ -10,7 +10,7 @@ recentlysaved = True #checks if the team has been changed without saving, makes 
 
 while True:
     try:
-        choice = int(input("\nWhat would you like to do?\n1)Create a new team\n2)Load an existing team\n3)Edit the currently loaded team\n4)Save the currently loaded team\n5)Close the program\nPlease input the number:"))
+        choice = int(input("\nWhat would you like to do?\n1)Create a new team\n2)Load an existing team\n3)Edit the currently loaded team\n4)Save the currently loaded team\n5)Close the program\nPlease input the number: "))
     except:
         #nothing code since i need to add something to the except
         choice = "Beans"
@@ -19,7 +19,7 @@ while True:
     if choice == 1:
         #check if team is not recently saved
         if recentlysaved == False:
-            choice2 = input("Are you sure? This will erase the currently loaded team (Y/N)")
+            choice2 = input("Are you sure? This will erase the currently loaded team (Y/N) ")
             if choice2.upper() == "Y":
                 team = CreateTeam()
                 teamloaded = True
@@ -31,7 +31,7 @@ while True:
 
     elif choice == 2:
         if recentlysaved == False:
-            choice2 = input("Are you sure? This will erase the currently loaded team (Y/N)")
+            choice2 = input("Are you sure? This will erase the currently loaded team (Y/N) ")
             if choice2.upper() == "Y":
                 team = LoadTeam()
                 teamloaded = True
