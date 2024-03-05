@@ -3,6 +3,9 @@ from LoadTeam import *
 from SaveTeam import *
 from EditTeam import *
 
+tester = "    test 1       d"
+print(tester.strip())
+
 
 team2 = LoadTeam()
 
