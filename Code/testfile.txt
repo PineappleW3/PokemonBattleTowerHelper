@@ -10,7 +10,7 @@ Static
 Thunderbolt
 Heat Wave
 Roost
-U-Turn
+U-turn
 $
 Moltres
 Choice Specs
@@ -24,7 +24,7 @@ Flame Body
 Flamethrower
 Hurricane
 Overheat
-U-Turn
+U-turn
 $
 Articuno
 Leftovers

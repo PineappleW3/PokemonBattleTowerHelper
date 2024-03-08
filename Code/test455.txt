@@ -10,7 +10,7 @@ Static
 Thunderbolt
 Heat Wave
 Roost
-Volt Switch
+U-turn
 $
 Moltres
 Choice Specs
@@ -22,20 +22,20 @@ Flame Body
 105
 156
 Flamethrower
-Blank
-Blank
-Blank
+Hurricane
+Overheat
+U-turn
 $
 Articuno
-Blank
-Blank
-0
-0
-0
-0
-0
-0
-Blank
-Blank
-Blank
-Blank
+Leftovers
+Pressure
+197
+81
+120
+115
+194
+106
+Freeze-Dry
+Hurricane
+Toxic
+Roost

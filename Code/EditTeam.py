@@ -299,12 +299,13 @@ def ChangeMoves(teammember):
     
     newmove = input("What would you like to change the move to? ")
     #validate selection
-    if newmove.title == "U-Turn":
-        currentmoves[choice-1] = "U-turn"
-        teammember.setmoves(currentmoves)
-        return teammember
-    elif newmove.title() in movelist:
-        currentmoves[choice-1] = newmove.title()
+    
+    newmove = newmove.title()
+    if newmove == "U-Turn":
+        newmove = "U-turn"
+
+    if newmove in movelist:
+        currentmoves[choice-1] = newmove
         teammember.setmoves(currentmoves)
         return teammember
     else:
