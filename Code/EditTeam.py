@@ -99,9 +99,20 @@ def ChangeSpecies(teammember):
 
 def ChangeItem(teammember):
     item = input("\nWhat would you like to change the item to? ")
-    ##Add validation to item once item table is made
-    teammember.setitem(item)
-    return teammember
+    item = item.title()
+
+    rows1 = cursor.execute(
+        "SELECT Description FROM Items WHERE ItemName = ?",
+        (item,),
+    ).fetchall()
+    print(rows1)
+    if len(rows1) > 0:
+        teammember.setitem(item)
+        return teammember
+    else:
+        print("Invalid input")
+        return ChangeItem(teammember)
+
 
 def ChangeAbility(teammember):
     abilitychoices = cursor.execute(

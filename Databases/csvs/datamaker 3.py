@@ -19,7 +19,7 @@ while True:
         break
     else:
         poke = poke.split(",")
-        abilityname = poke[0]
+        abilityname = poke[0].strip()
         description = poke[1]
 
         if len(poke) > 2:
@@ -29,7 +29,7 @@ while True:
                 count+=1
             description = description[1:]
             description = description[:-2]
-
+        description = description.strip()
         try:
             cursor.execute("INSERT INTO Abilities VALUES (?,?)",(abilityname, description))
         except:

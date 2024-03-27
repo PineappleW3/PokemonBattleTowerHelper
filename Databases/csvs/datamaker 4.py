@@ -31,15 +31,17 @@ while True:
             description = description[1:]
             description = description[:-2]
 
-        name = poke[1]
-        type = poke[3+bonus]
-        category = poke[4+bonus]
-        power = poke[5+bonus]
-        accuracy = poke[6+bonus]
-        pp = poke[7+bonus]
-        z = poke[8+bonus]
-        priority = poke[9+bonus]
-        crit = poke[10+bonus]
+        description = description.strip()
+
+        name = poke[1].strip()
+        type = poke[3+bonus].strip()
+        category = poke[4+bonus].strip()
+        power = poke[5+bonus].strip()
+        accuracy = poke[6+bonus].strip()
+        pp = poke[7+bonus].strip()
+        z = poke[8+bonus].strip()
+        priority = poke[9+bonus].strip()
+        crit = poke[10+bonus].strip()
 
         
 

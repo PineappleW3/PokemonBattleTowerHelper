@@ -19,7 +19,7 @@ while True:
         break
     else:
         poke = poke.split(",")
-        itemname = poke[1]
+        itemname = poke[1].strip()
         description = poke[2]
 
         if len(poke) > 3:
@@ -29,6 +29,7 @@ while True:
                 count+=1
             description = description[1:]
             description = description[:-2]
+        description = description.strip()
 
         try:
             cursor.execute("INSERT INTO Items VALUES (?,?)",(itemname, description))
