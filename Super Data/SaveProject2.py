@@ -169,38 +169,18 @@ while True:
     #31
     f.readline()
 
-    types = cursor.execute(
-        "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
-        (name,),
-    ).fetchall()
-    name2 = name
-    if len(types)<1:
-        print("The counter is at " + str(count))
-        print("The Pokemon is " + name)
-        name2 = input("What is the Pokemon name? ")
-        types = cursor.execute(
-            "SELECT Type1, Type2 FROM PokemonSpecies WHERE Name = ?",
-            (name2,),
-        ).fetchall()
-    type1 = types[0][0]
-    type2 = types[0][1]
-
-    stats3 = cursor.execute(
-         "SELECT Hp,Attack,Defense,SpAtk,SpDef,Speed FROM PokemonSpecies WHERE Name = ?",
-         (name2,),
-    ).fetchall()[0]
-    #stat calculations
-    naturestat = naturestatthing(naturelist,nature)
-    HP1 = math.floor((((2*stats3[0]) + 31 + (63*hp))*50)/100) + 60
-    Attack1 = math.floor((math.floor((((2*stats3[1]) + 31 + (63*atk))*50)/100)+5)*naturestat[1])
-    Defense1 = math.floor((math.floor((((2*stats3[2]) + 31 + (63*defn))*50)/100)+5)*naturestat[2])
-    Spa1 = math.floor((math.floor((((2*stats3[3]) + 31 + (63*spa))*50)/100)+5)*naturestat[3])
-    Spd1 = math.floor((math.floor((((2*stats3[4]) + 31 + (63*spd))*50)/100)+5)*naturestat[4])
-    Speed1 = math.floor((math.floor((((2*stats3[5]) + 31 + (63*spe))*50)/100)+5)*naturestat[5])
 
 
-    cursor.execute("INSERT INTO Opponents VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(count,name,item,move1,move2,move3,move4,HP1,Attack1,Defense1,Spa1,Spd1,Speed1,type1,type2,name2))
+    #cursor.execute("INSERT INTO Opponents VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(count,name,item,move1,move2,move3,move4,HP1,Attack1,Defense1,Spa1,Spd1,Speed1,type1,type2,name2))
+    cursor.execute(
+        "UPDATE Opponents SET Move3 = ? WHERE Number = ?",
+        (move3, count)
+    )
+    cursor.execute(
+        "UPDATE Opponents SET Move4 = ? WHERE Number = ?",
+        (move4, count)
+    )
 
-
+    break
 connection.commit()
 connection.close()
