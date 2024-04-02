@@ -105,7 +105,6 @@ def ChangeItem(teammember):
         "SELECT Description FROM Items WHERE ItemName = ?",
         (item,),
     ).fetchall()
-    print(rows1)
     if len(rows1) > 0:
         teammember.setitem(item)
         return teammember
