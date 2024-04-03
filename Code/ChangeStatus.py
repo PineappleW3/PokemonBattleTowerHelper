@@ -32,7 +32,7 @@ def ChangeStatus(player, opponents):
         print("Invalid input")
         return ChangeStatus(player,opponents)
     
-
+    newopponents = []
     enemystatus = input("What status condition does the opponent Pokemon currently have?\n1)Burn\n2)Freeze\n3)Paralysis\n4)Poison\n5)Toxic\n6)Sleep\n7)None\nPlease input the number: ")
     try:
         enemystatus = int(enemystatus)
@@ -58,6 +58,8 @@ def ChangeStatus(player, opponents):
         else:
             print("Invalid input")
             return ChangeStatus(player,opponents)
+        newopponents.append(i)
+    opponents = newopponents
         
     return(player,opponents)
     

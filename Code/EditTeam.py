@@ -112,7 +112,6 @@ def ChangeItem(teammember):
         print("Invalid input")
         return ChangeItem(teammember)
 
-
 def ChangeAbility(teammember):
     abilitychoices = cursor.execute(
         "SELECT Abilities FROM PokemonSpecies WHERE Name = ?",

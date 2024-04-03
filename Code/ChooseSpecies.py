@@ -25,7 +25,3 @@ def ChooseSpecies():
 		
 
 	return (species)
-	
-	
-
-ChooseSpecies()

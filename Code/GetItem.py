@@ -27,7 +27,3 @@ def GetItem(opponents):
     else:
         print("Item invalid for the current Pokemon species")
         return GetItem(opponents)
-    
-
-opponents = CreateOpponent("Zapdos")
-item = GetItem(opponents)
