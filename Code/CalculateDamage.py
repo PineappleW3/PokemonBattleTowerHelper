@@ -9,6 +9,8 @@ filename = os.path.join(dirname, 'Pokemon.db')
 connection = sqlite3.connect(filename)
 cursor = connection.cursor()
 
+from LoadTeam import *
+
 
 def CalculateDamage(attacker, defender, move, bonus):
     damagestuff = cursor.execute(
@@ -34,9 +36,14 @@ def CalculateDamage(attacker, defender, move, bonus):
         #message for later testing
         print("Things have gone awfully wrong somewhere")
 
+
+    attack = int(attack)
+    defense = int(defense)
+    power = int(power)
+
     if bonus[0] == 3 and (defender.gettype1() == "Rock" or defender.gettype2 == "Rock") and damagetype == "Special" and (move != "Psyshock" and move != "Psystrike"):
         defense = round(defense*1.5)
-
+    
     damage = 22*power*(attack/defense)
     damage = round((damage/50)+2)
 
@@ -54,8 +61,67 @@ def CalculateDamage(attacker, defender, move, bonus):
         elif movetype == "Fire":
             damage = round(damage*1.5)
 
-    return("Still not over")
+    #random damage roll (using average)
+    damage = round(damage*0.92)
 
+    #STAB
+    if movetype == attacker.gettype1() or movetype == attacker.gettype2():
+        damage = round(damage*1.5)
 
+    typeeffect = cursor.execute(
+        "SELECT * from Typechart WHERE Type1 = ? AND Type2 = ?",
+        (defender.gettype1(),defender.gettype2(),),
+    ).fetchall()[0]
 
-#CalculateDamage(1,1,"Thunderbolt",1)
+    if movetype == "Normal":
+        index = 3
+    elif movetype == "Fire":
+        index = 4
+    elif movetype == "Water":
+        index = 5
+    elif movetype == "Electric":
+        index = 6
+    elif movetype == "Grass":
+        index = 7
+    elif movetype == "Ice":
+        index = 8
+    elif movetype == "Fighting":
+        index = 9
+    elif movetype == "Poison":
+        index = 10
+    elif movetype == "Ground":
+        index = 11
+    elif movetype == "Flying":
+        index = 12
+    elif movetype == "Psychic":
+        index = 13
+    elif movetype == "Bug":
+        index = 14
+    elif movetype == "Rock":
+        index = 15
+    elif movetype == "Ghost":
+        index = 16
+    elif movetype == "Dragon":
+        index = 17
+    elif movetype == "Dark":
+        index = 18
+    elif movetype == "Steel":
+        index = 19
+    elif movetype == "Fairy":
+        index = 20
+    typething2 = typeeffect[index]
+    damage = round(damage*typething2)
+
+    if damagetype == "Physical" and attacker.getstatus() == "Burn":
+        damage = round(damage/2)
+    
+
+    item = attacker.getitem()
+    if item == "Life Orb":
+        damage = round(damage*1.3)
+    elif item == "Choice Band" and damagetype == "Physical":
+        damage = round(damage*1.5)
+    elif item == "Choice Specs" and damagetype == "Special":
+        damage = round(damage*1.5)
+
+    return(damage)

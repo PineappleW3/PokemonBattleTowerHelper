@@ -4,12 +4,13 @@ def BonusInfo():
     #2 = sun
     #3 = sand
     #4 = hail
+    #5 = none
     try:
-        weather = int(input("What is the current weather condition?\n1)Rain\n2)Sun\n3)Sand\n4)Hail\nPlease input the number: "))
+        weather = int(input("What is the current weather condition?\n1)Rain\n2)Sun\n3)Sand\n4)Hail\n5)None\nPlease input the number: "))
     except:
         print("Invalid input")
         return BonusInfo()
-    if weather < 1 or weather > 4:
+    if weather < 1 or weather > 5:
         print("Invalid input")
         return BonusInfo()
 		
