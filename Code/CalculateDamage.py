@@ -13,6 +13,7 @@ from LoadTeam import *
 
 
 def CalculateDamage(attacker, defender, move, bonus):
+    #necessary information on the move
     damagestuff = cursor.execute(
         "SELECT Category,Power,Type from Moves WHERE MoveName = ?",
         (move,),
@@ -20,6 +21,7 @@ def CalculateDamage(attacker, defender, move, bonus):
     damagetype = damagestuff[0]
     power = damagestuff[1]
     movetype = damagestuff[2]
+
     #sets the attack and defense stats based on the type of move used
     if damagetype == "Physical":
         attack = attacker.getattack()
@@ -39,11 +41,23 @@ def CalculateDamage(attacker, defender, move, bonus):
 
     attack = int(attack)
     defense = int(defense)
-    power = int(power)
+
+
+    #VERY SCUFFED
+    #LITERALLY JUST WRONG
+    #NEED TO FIX LATER
+    #PLEASE DONT FORGET TO DO THIS
+    try:
+        power = int(power)
+    except:
+        power = 50
+
 
     if bonus[0] == 3 and (defender.gettype1() == "Rock" or defender.gettype2 == "Rock") and damagetype == "Special" and (move != "Psyshock" and move != "Psystrike"):
         defense = round(defense*1.5)
-    
+
+
+    #initial calculation
     damage = 22*power*(attack/defense)
     damage = round((damage/50)+2)
 
@@ -109,6 +123,7 @@ def CalculateDamage(attacker, defender, move, bonus):
         index = 19
     elif movetype == "Fairy":
         index = 20
+
     typething2 = typeeffect[index]
     damage = round(damage*typething2)
 

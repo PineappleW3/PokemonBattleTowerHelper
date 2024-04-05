@@ -9,7 +9,6 @@ filename = os.path.join(dirname, 'Pokemon.db')
 connection = sqlite3.connect(filename)
 cursor = connection.cursor()
 
-
 def CreateTeam():
     team = []
     count = 0

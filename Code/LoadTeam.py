@@ -91,5 +91,4 @@ def LoadTeam():
     f.close()
     return team
 
-
 #=m]z(K2b72rl

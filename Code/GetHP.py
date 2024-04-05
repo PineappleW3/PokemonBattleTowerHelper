@@ -1,10 +1,13 @@
 def GetHP(player, opponents):
     newopponents = []
+
     try:
         playerhp = int(input("What HP is your Pokemon currently at? "))
     except:
         print("Invalid input")
         return GetHP(player,opponents)
+    
+    #makes sure player HP does not exceed max hp
     if playerhp > player.gethp() or playerhp < 0:
         print("Invalid input")
         return GetHP(player,opponents)
@@ -16,9 +19,11 @@ def GetHP(player, opponents):
     except:
         print("Invalid input")
         return GetHP(player,opponents)
-    if enemyhp > 100 or playerhp < 0:
+
+    if enemyhp > 100 or enemyhp < 0:
         print("Invalid input")
         return GetHP(player,opponents)
+    #calculates HP percentage for each opponent in list
     for i in opponents:
         temp = i.getcurrenthp()
         if temp == "Max":
@@ -31,5 +36,3 @@ def GetHP(player, opponents):
         newopponents.append(i)
     opponents = newopponents
     return (player,opponents)
-    
-

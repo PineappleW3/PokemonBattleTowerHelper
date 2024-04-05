@@ -7,9 +7,12 @@ from GetItem import *
 from GetLevel import *
 from GetMoves import *
 from ChooseSpecies import *
+from DisplayOpponents import *
 from GetAbility import *
 from GetHP import *
 import sys
+from EnemyMove import *
+
 
 import math
 import sqlite3
@@ -24,14 +27,13 @@ cursor = connection.cursor()
 
 from LoadTeam import *
 
+from DisplayOpponents import *
 
-def DataEntry():
+def DataEntry(team,opponententered,bonus,opponents,teamoffset):
     moves = []
     item = "Unknown"
-    team = LoadTeam()
-    teamoffset = 0
-    opponententered = False
-    bonus = [5,False,False,False]
+    
+
     while True:
         if opponententered == False:
             species = ChooseSpecies()
@@ -96,12 +98,17 @@ def DataEntry():
 
         
 def GameplayLoop():
-    temp = DataEntry()
+    temp = DataEntry(LoadTeam(),False,[5,False,False,False],3,0)
     team = temp[0]
     offset = temp[1]
     opponents = temp[2]
     bonus = temp[3]
+    expectedmoves = EnemyMove(team,offset,opponents,bonus)
+    while True:
+        #big choice loop
+        choice = input("Temporary text lmao")
+    DisplayOpponents(opponents,expectedmoves)
 
+    
 
 GameplayLoop()
-

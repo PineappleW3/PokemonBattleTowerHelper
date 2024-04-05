@@ -12,4 +12,3 @@ def GetLevel():
 		level = GetLevel()
 
 	return level
-

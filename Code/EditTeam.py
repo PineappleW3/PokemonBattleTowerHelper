@@ -54,8 +54,8 @@ def ChangeMember(teammember):
     try:
         change = int(input("What aspect would you like to change? \n1)Species \n2)Held Item \n3)Ability \n4)Stats \n5)Moves \nPlease input the number:"))
     except:
-        print("Invalid input. Cancelling operation.")
-        return teammember
+        print("Invalid input")
+        return ChangeMember(teammember)
     
     #big if statement to check output
     if change == 1:
@@ -77,8 +77,8 @@ def ChangeMember(teammember):
         teammember = ChangeMoves(teammember)
 
     else:
-        print("Invalid input. Cancelling operation.")
-    return teammember
+        print("Invalid input")
+    return ChangeMember(teammember)
     
 def ChangeSpecies(teammember):
     new = input("\nWhat Pokemon would you like to change to? ")
@@ -94,8 +94,8 @@ def ChangeSpecies(teammember):
         teammember.settype1(rows1[0])
         teammember.settype2(rows1[1])
     else:
-        print("Invalid Pokemon species. Cancelling change.")
-    return teammember
+        print("Invalid Pokemon species")
+    return ChangeSpecies(teammember)
 
 def ChangeItem(teammember):
     item = input("\nWhat would you like to change the item to? ")
@@ -140,8 +140,8 @@ def ChangeAbility(teammember):
     if choice in abilitychoices:
         teammember.setability(choice)
     else:
-        print("Invalid ability. Cancelling change.")
-    return teammember
+        print("Invalid ability")
+    return ChangeAbility(teammember)
 
 def ChangeStats(teammember):
     try:
@@ -300,11 +300,11 @@ def ChangeMoves(teammember):
     try:
         choice = int(input("\nWhich move slot would you like to change? "))
     except:
-        print("Invalid input. Cancelling change")
-        return teammember
+        print("Invalid input")
+        return ChangeMoves(teammember)
     if choice<1 or choice>4:
-        print("Invalid input. Cancelling change")
-        return teammember
+        print("Invalid input")
+        return ChangeMoves(teammember)
     
     newmove = input("What would you like to change the move to? ")
     #validate selection
@@ -318,5 +318,5 @@ def ChangeMoves(teammember):
         teammember.setmoves(currentmoves)
         return teammember
     else:
-        print("Invalid move choice. Cancelling change")
-        return teammember
+        print("Invalid move choice")
+        return ChangeMoves(teammember)

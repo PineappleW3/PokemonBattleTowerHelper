@@ -101,8 +101,8 @@ def SaveTeam(team):
     f.write(team3.getmoves()[2])
     f.write("\n")
     f.write(team3.getmoves()[3])
-
     
     f.close()
     #had to return something for some reason
+    #no you didnt
     return 5

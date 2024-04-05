@@ -23,5 +23,4 @@ def ChooseSpecies():
 		print ("Invalid Pokemon species name (try checking spelling)")
 		species = ChooseSpecies()
 		
-
 	return (species)

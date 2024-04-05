@@ -62,5 +62,3 @@ def ChangeStatus(player, opponents):
     opponents = newopponents
         
     return(player,opponents)
-    
-
