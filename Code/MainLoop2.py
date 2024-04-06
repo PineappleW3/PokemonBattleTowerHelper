@@ -12,6 +12,8 @@ from GetAbility import *
 from GetHP import *
 import sys
 from EnemyMove import *
+from RankMoves import *
+from SearchData import *
 
 
 import math
@@ -39,7 +41,7 @@ def DataEntry(team,opponententered,bonus,opponents,teamoffset):
             species = ChooseSpecies()
             opponents = CreateOpponent(species)
             opponententered = True
-        CullOpponents(opponents,item,moves)
+        opponents = CullOpponents(opponents,item,moves)
 
         player = team[teamoffset]
         
@@ -85,6 +87,7 @@ def DataEntry(team,opponententered,bonus,opponents,teamoffset):
                 print("Invalid input")
             else:
                 teamoffset = temp-1
+                player = team[teamoffset]
 
         elif choice == 9:
             choice2 = input("Are you sure?(Y/N) ")
@@ -105,9 +108,34 @@ def GameplayLoop():
     bonus = temp[3]
     expectedmoves = EnemyMove(team,offset,opponents,bonus)
     while True:
-        #big choice loop
-        choice = input("Temporary text lmao")
-    DisplayOpponents(opponents,expectedmoves)
+        choice = input("\nWhat would you like to do? \n1)Enter more information about the battle \n2)View each of the opponents \n3)Search the database for a specific thing \n4)See the best move to make \nPlease enter the number: ")
+        try:
+            choice = int(choice)
+        except:
+            choice = "a billion"
+
+        if choice == 1:
+            temp = DataEntry(team,True,bonus,opponents,offset)
+            team = temp[0]
+            offset = temp[1]
+            opponents = temp[2]
+            bonus = temp[3]
+            expectedmoves = EnemyMove(team,offset,opponents,bonus)
+        
+        elif choice == 2:
+            DisplayOpponents(opponents,expectedmoves)
+
+        elif choice == 3:
+            SearchData()
+        
+        elif choice == 4:
+            temp = RankMoves(team,offset,opponents,bonus,expectedmoves)
+            print("The suggested strategy is: " + temp[0])
+            print(temp[1])
+            print("Your strongest move is " + temp[2] + ", dealing " + str(temp[3]) + " damage")
+        
+        else:
+            print("Invalid input")
 
     
 

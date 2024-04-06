@@ -98,4 +98,3 @@ def SearchData():
 
     else:
         print("Invalid input")
-SearchData()

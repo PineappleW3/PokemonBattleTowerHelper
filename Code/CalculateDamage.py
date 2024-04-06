@@ -127,16 +127,5 @@ def CalculateDamage(attacker, defender, move, bonus):
     typething2 = typeeffect[index]
     damage = round(damage*typething2)
 
-    if damagetype == "Physical" and attacker.getstatus() == "Burn":
-        damage = round(damage/2)
-    
-
-    item = attacker.getitem()
-    if item == "Life Orb":
-        damage = round(damage*1.3)
-    elif item == "Choice Band" and damagetype == "Physical":
-        damage = round(damage*1.5)
-    elif item == "Choice Specs" and damagetype == "Special":
-        damage = round(damage*1.5)
 
     return(damage)

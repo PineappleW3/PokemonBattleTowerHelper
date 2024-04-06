@@ -26,10 +26,8 @@ def GetHP(player, opponents):
     #calculates HP percentage for each opponent in list
     for i in opponents:
         temp = i.getcurrenthp()
-        if temp == "Max":
-            temp = i.gethp()
         temp = int(temp)
-        temp2 = round(temp * enemyhp)
+        temp2 = round((temp * enemyhp)/100)
         if enemyhp != 0 and temp2 < 1:
             temp2 = 1
         i.setcurrenthp(temp2)
