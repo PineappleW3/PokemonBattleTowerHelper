@@ -132,7 +132,7 @@ def GameplayLoop():
             temp = RankMoves(team,offset,opponents,bonus,expectedmoves)
             print("The suggested strategy is: " + temp[0])
             print(temp[1])
-            print("Your strongest move is " + temp[2] + ", dealing " + str(temp[3]) + " damage")
+            print("Your strongest attack is " + temp[2])
         
         else:
             print("Invalid input")
