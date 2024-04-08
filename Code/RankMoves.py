@@ -18,6 +18,9 @@ from CalculateDamage import *
 def RankMoves(team,offset,opponents,bonus,expectedmoves):
     player = team[offset]
     playerhp = player.getcurrenthp()
+
+
+    #finds enemy moves that can ohko
     ohkolist = []
     ohko = False
     for i in range (0,len(expectedmoves)):
@@ -27,7 +30,7 @@ def RankMoves(team,offset,opponents,bonus,expectedmoves):
             ohkolist.append(i)
 
     
-
+    #finds strongest player attack
     attackmoves2 = []
     statusmoves2 = []
     moves = player.getmoves()
@@ -55,13 +58,12 @@ def RankMoves(team,offset,opponents,bonus,expectedmoves):
         count+=1
     strongestmove = attackmoves2[damageoffset]
 
-    #right now we know:
-    #can the player be knocked out in one hit
-    #which of the players attacks will deal the most damage
+    
 
     strategy = "Attack"
     reason = "Filler"
     outspeedko = True
+
     for i in ohkolist:
         enemy = opponents[i]
         damage7 = CalculateDamage(player,enemy,strongestmove,bonus)
@@ -72,7 +74,8 @@ def RankMoves(team,offset,opponents,bonus,expectedmoves):
                 
         else:
             outspeedko = False
-    
+
+    #strategies if enemy can ohko
     if ohko == True and outspeedko == True:
         strategy = "Attack"
         reason = "The enemy can knock you out in one hit, but your Pokemon is faster and can knock the opponent out first"
@@ -88,6 +91,8 @@ def RankMoves(team,offset,opponents,bonus,expectedmoves):
         damage7 = CalculateDamage(player,enemy,strongestmove,bonus)
         if damage7 < enemy.getcurrenthp():
             ohkoenemy = False
+
+            
     if ohkoenemy == True:
         strategy = "Attack"
         reason = "You are able to knock out the enemy in one hit"

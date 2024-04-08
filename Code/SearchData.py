@@ -22,12 +22,15 @@ def SearchData():
             "SELECT Type1,Type2,Abilities FROM PokemonSpecies WHERE Name = ?",
             (search,),
         ).fetchall()
+        #validation to make sure input is valid
         if len(dataname) > 0:
             type1 = dataname[0][0]
             type2 = dataname[0][1]
             abilities = dataname[0][2]
             abilities = abilities.split(",")
 
+            #gets rid of duplicate abilities
+            #should remove duplicaes from database at some point instead
             ability2 = []
             for i in abilities:
                 if i in ability2:
@@ -50,6 +53,9 @@ def SearchData():
     elif choice == 2:
         search = input("Please enter the move name: ")
         search = search.title()
+        #special check because U-turn is named strangely
+        if search == "U-Turn":
+            search = "U-turn"
         dataname = cursor.execute(
             "SELECT Type,Category,Power,Accuracy,Description FROM Moves WHERE MoveName = ?",
             (search,),
@@ -84,7 +90,7 @@ def SearchData():
             print("Invalid input")
 
     elif choice == 4:
-        search = input("Please enter the item name: ")
+        search = input("Please enter the ability name: ")
         search = search.title()
         dataname = cursor.execute(
             "SELECT Description FROM Abilities WHERE AbilityName = ?",
