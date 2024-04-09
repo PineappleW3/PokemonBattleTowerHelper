@@ -55,7 +55,7 @@ def ChangeMember(teammember):
         change = int(input("What aspect would you like to change? \n1)Species \n2)Held Item \n3)Ability \n4)Stats \n5)Moves \nPlease input the number:"))
     except:
         print("Invalid input")
-        return ChangeMember(teammember)
+        return (teammember)
     
     #big if statement to check output
     if change == 1:
@@ -78,6 +78,7 @@ def ChangeMember(teammember):
 
     else:
         print("Invalid input")
+        return(teammember)
     return ChangeMember(teammember)
     
 def ChangeSpecies(teammember):
@@ -95,7 +96,8 @@ def ChangeSpecies(teammember):
         teammember.settype2(rows1[1])
     else:
         print("Invalid Pokemon species")
-    return ChangeSpecies(teammember)
+        return ChangeSpecies(teammember)
+    return teammember
 
 def ChangeItem(teammember):
     item = input("\nWhat would you like to change the item to? ")
@@ -139,9 +141,10 @@ def ChangeAbility(teammember):
     choice = choice.title()
     if choice in abilitychoices:
         teammember.setability(choice)
+        return teammember
     else:
         print("Invalid ability")
-    return ChangeAbility(teammember)
+        return ChangeAbility(teammember)
 
 def ChangeStats(teammember):
     try:
